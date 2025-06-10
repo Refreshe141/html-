@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Focus Events</title>
+
+</head>
+<body>
+  <form id="form">
+    성별을 선택하시요..<br>
+    <input type="radio" name="p1" value="남"> 남 </input>
+    <input type="radio" name="p1" value="여"> 여 </input>
+    
+    <br><br>지역을 선택하시요..<br>
+    <input type="radio" name="p2" value="대구"> 대구</input> 
+    <input type="radio" name="p2" value="서울"> 서울</input> 
+  </form>
+  <button id="btn">결과 확인</button>
+  <div id="log">
+
+  </div>
+<script>
+  const btn = document.getElementById('btn');
+  const log = document.getElementById('log');
+  let view1 = "No", view2="no";
+  let rn ;
+  const cnt = 2; 
+  let result = [];
+  btn.addEventListener('click', () => {
+    for(let i = 0; i<cnt;i++){
+        rn = "p" + (i+1);
+      if(document.querySelector(`input[name="${rn}"]:checked`) != null ){
+      result[i] = document.querySelector(`input[name="${rn}"]:checked`).value;
+      }
+      else {alert(`${(i+1)}번 문제 답을 선택하세요`); return;}
+
+    }
+    for(var i=0; i<result.length;i++){
+        log.innerHTML = log.innerHTML + `${i+1}번 : ${result[i]}<br>`;
+    }
+    log.innerHTML = log.innerHTML + '<br>을 선택 했어요';
+   
+ });
+
+</script>
+</body>
+</html>

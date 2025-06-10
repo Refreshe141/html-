@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculator</title>
+        <style>
+            #exp{text-align: center;}
+        </style>
+        <script>
+            function calc(){
+              const exp = document.querySelector("#exp");
+              result = exp.value + " = " + eval(exp.value);  
+              exp.value = result;
+            }
+            
+            function init(){
+                const btn = document.querySelector("#btn");
+                const clr = document.querySelector("#clr");
+                btn.addEventListener('click', calc);
+                clr.addEventListener('click', function(){
+                    document.querySelector("#exp").value = "";
+
+              });
+            }
+            window.addEventListener('load', init);
+        </script>
+    </head>
+    <body>
+        <div class="calculator">
+            <input type="text" size=20 id="exp" value="2+3">
+            <button id="btn">계산</button>
+            <button id="clr">초기화</button>
+        </div>
+    </body>
+</html>

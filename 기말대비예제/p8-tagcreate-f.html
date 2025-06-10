@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+   <style>
+       #box{width:502px;border:solid 1px black;margin:auto;}
+       #tbox{width:100% ; border:solid 1px blick; overflow: hidden;}
+       #butbox{width:100%; border:solid 1px black; height:40px;}
+       #butbox>button{font-size: 20px; margin: 5px 7px;}
+       #txt{width: 30%;text-align: center;font-size: 20px;
+              margin:10px 7px; }
+       #cnt{width: 10%;text-align: center;font-size: 20px;
+              margin:5px 7px; }
+       #wbox{width:100% ;border:solid 1px black; overflow: hidden;}
+       #wbox>div{ width:25%; height:30px; border:solid 2px blue; float:left; margin: 5px 17px;
+                  text-align: center;line-height: 30px; font-size: 20px}
+       #wbox>div:first-child{background:pink;}
+       #wbox>div:last-child{background:yellow;}
+   </style>
+   <script>
+      window.onload=function(){
+            let rmcnt = 0;
+            let parent = document.getElementById("wbox");
+            document.getElementById("cnt").value = document.querySelectorAll("#wbox>div").length;
+            document.querySelector("#cr").onclick=function(){
+                let node = document.createElement("div");  
+                let text = document.querySelector("#txt").value;
+                let child = document.querySelectorAll("#wbox>div");
+                if(child.length >= 15) {alert("Max 15개만 가능~");return false;}
+                node.innerHTML= text ;
+                node.ondblclick=function(){ removeTag(this);}
+                parent.appendChild(node);
+                document.getElementById("cnt").value = child.length + 1;
+                document.querySelector("#txt").select();
+           };
+
+           document.querySelector("#butbox>#rm").onclick= function(){
+                let child = document.querySelectorAll("#wbox>div");
+                if(child.length == 0) {alert("더이상 삭제대상 없음~");return false;}
+                let text = document.querySelector("#txt").value;
+                for(i=0; i<child.length;i++) {
+                        // alert(text + " : " + child[i].innerText);
+                         if(text==child[i].innerText){
+                             // document.querySelector(child[i]).remove();
+                             parent.removeChild(child[i]);
+                             document.getElementById("cnt").value -= 1;
+                             rmcnt++; 
+                         }
+                }
+                if(rmcnt == 0) alert( "<div>" + text + "</div> 태그가 없음~");
+                else {
+                     alert("<div>" + text + "</div> : " + rmcnt + "개 삭제하였음~~");
+                     rmcnt=0;
+                    }
+                    document.querySelector("#txt").select();
+           };
+
+           function removeTag(n){
+               parent.removeChild(n);
+               document.getElementById("cnt").value -= 1;
+               document.querySelector("#txt").select();
+           }
+
+           document.querySelector("#wbox>div").ondblclick=function(){
+               removeTag(this);
+           };          
+       };
+
+    </script>
+</head>
+<body>
+<div id="box">
+       <div id="tbox">  
+               <div id="butbox">
+                    <input id="txt" type="text" value="Html Box" />
+                    <button id="cr"> 박스생성 </button>
+                    <button id="rm"> 박스제거 </button>
+                    <input id="cnt" type="text" value="" />
+               </div>
+               <div id="wbox">
+                   <div>HTML5</div>
+               </div>
+
+       </div>
+
+       
+</div><!-- end of id="box" -->
+    
+
+</body>
+</html>

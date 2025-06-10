@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 여러 번 뽑아보는 숫자 친구들 ✨</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            background-color: #f0f8ff; /* 살짝 연한 파랑 배경 */
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px; /* 둥근 모서리 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+            text-align: center;
+            width: 90%; /* 너비 조절 */
+            max-width: 600px; /* 최대 너비 설정 */
+        }
+        h1 {
+            color: #ff69b4; /* 핑크색 제목 */
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px; /* 입력 그룹 간 간격 */
+            display: flex; /* 라벨과 입력창을 가로로 */
+            align-items: center;
+            justify-content: center; /* 가운데 정렬 */
+        }
+        .input-group label {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            width: 150px; /* 라벨 너비 고정 */
+            text-align: right; /* 라벨 오른쪽 정렬 */
+            flex-shrink: 0; /* 라벨 너비가 줄어들지 않게 */
+        }
+        .input-group input[type="number"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80px; /* 입력창 너비 */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #87cefa; /* 하늘색 버튼 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* 마우스 오버 시 손가락 모양 */
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* 부드러운 색상 변화 */
+            margin-top: 10px; /* 버튼 위 간격 */
+        }
+        button:hover {
+            background-color: #4682b4; /* 호버 시 진한 하늘색 */
+        }
+        #resultArea {
+            margin-top: 30px; /* 결과 영역 위 간격 */
+            font-size: 16px; /* 결과 글자 크기 */
+            color: #333;
+            text-align: left; /* 결과는 왼쪽 정렬 */
+            border-top: 1px dashed #ccc; /* 결과 시작 구분선 */
+            padding-top: 15px;
+            max-height: 300px; /* 결과 영역 최대 높이 */
+            overflow-y: auto; /* 결과가 많으면 스크롤 */
+        }
+        #resultArea p {
+            margin-bottom: 8px; /* 각 결과 줄 사이 간격 */
+            padding: 8px;
+            background-color: #eef; /* 살짝 배경색 */
+            border-radius: 5px;
+            word-break: break-word; /* 결과가 길어지면 줄바꿈 */
+        }
+        #resultArea p:last-child {
+            margin-bottom: 0; /* 마지막 결과 줄 아래 간격 제거 */
+        }
+        .error {
+            color: red; /* 에러 메시지 색상 */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>✨ 숫자 친구들 뽑고 줄 세우기 놀이! ✨</h1>
+
+        <div class="input-group">
+            <label for="minRange">범위 시작 (최솟값):</label>
+            <input type="number" id="minRange" value="1">
+        </div>
+
+        <div class="input-group">
+            <label for="maxRange">범위 끝 (최댓값):</label>
+            <input type="number" id="maxRange" value="20">
+        </div>
+
+        <div class="input-group">
+            <label for="count">한 번 뽑을 때 몇 명?:</label>
+            <input type="number" id="count" value="5">
+        </div>
+
+        <div class="input-group">
+            <label for="numberOfSets">총 몇 번 반복할까요?:</label>
+            <input type="number" id="numberOfSets" value="3"> <!-- 기본값 3번 반복 -->
+        </div>
+
+        <button onclick="processNumbers()">숫자 친구들 신나게 뽑자!</button>
+
+        <div id="resultArea">
+            <!-- 결과가 여기에 각 줄마다 귀엽게 표시될 거예요! 😊 -->
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 지정된 범위에서 원하는 개수만큼 정수를 선택하고 정렬하여 반환합니다.
+         * (내부적으로는 에러 상황 시 빈 배열을 반환합니다)
+         * @param {number} min - 범위의 최솟값 (포함)
+         * @param {number} max - 범위의 최댓값 (포함)
+         * @param {number} count - 선택할 정수의 개수
+         * @returns {number[]} - 선택되고 정렬된 정수 배열 또는 빈 배열 (에러 시)
+         */
+        function selectAndSortIntegers(min, max, count) {
+             // selectAndSortIntegers 함수 자체는 인자 유효성 검사 대신,
+             // 결과가 유효하지 않으면 빈 배열을 반환하는 방식으로 유지합니다.
+             // 숫자 형태인지, 범위가 맞는지, 개수가 0 이상인지는 processNumbers에서 먼저 체크합니다.
+
+            // 1. 범위 안의 모든 숫자 친구들을 모아봐요!
+            const allNumbers = [];
+            for (let i = min; i <= max; i++) {
+                allNumbers.push(i);
+            }
+
+            // 만약 선택할 개수가 전체 숫자 친구들보다 많으면 곤란해요!
+            if (count > allNumbers.length) {
+                 console.warn(`경고: 뽑으려는 숫자 친구(${count}명)가 범위 안의 전체 친구(${allNumbers.length}명)보다 많아요! 이 시도는 건너뜁니다.`); // 콘솔에 경고 출력
+                 return []; // 텅 빈 배열을 돌려줄게요.
+            }
+
+            // 2. 숫자 친구들을 신나게 섞어줘요! (피셔-예이츠 셔플 알고리즘)
+            // 복사본을 만들어서 섞어요 원본을 보호하기 위해!
+            const shuffledNumbers = [...allNumbers]; // 배열 복사
+            for (let i = shuffledNumbers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledNumbers[i], shuffledNumbers[j]] = [shuffledNumbers[j], shuffledNumbers[i]]; // 자리 바꾸기!
+            }
+
+            // 3. 섞인 친구들 중에서 앞에서부터 원하는 개수만큼만 데려와요!
+            const selectedNumbers = shuffledNumbers.slice(0, count);
+
+            // 4. 데려온 친구들을 예쁘게 줄 세워요! (오름차순으로!)
+            selectedNumbers.sort((a, b) => a - b);
+
+            // 5. 줄 세운 친구들을 반환! 쨔잔~ ✨
+            return selectedNumbers;
+        }
+
+        // 버튼을 눌렀을 때 실행될 함수에요! 여러 번 반복해요!
+        function processNumbers() {
+            // HTML 입력 필드에서 값 가져오기!
+            const minInput = document.getElementById('minRange').value;
+            const maxInput = document.getElementById('maxRange').value;
+            const countInput = document.getElementById('count').value;
+            const setsInput = document.getElementById('numberOfSets').value; // 반복 횟수 입력값
+
+            // 가져온 값은 문자열이니 숫자로 바꿔줘야 해요!
+            const min = parseInt(minInput);
+            const max = parseInt(maxInput);
+            const count = parseInt(countInput);
+            const numberOfSets = parseInt(setsInput); // 반복 횟수를 숫자로 변환
+
+            const resultArea = document.getElementById('resultArea');
+            resultArea.innerHTML = ''; // 이전 결과들을 깨끗이 지워줘요!
+
+            // **새로운 입력값 포함하여 유효성 검사 먼저!**
+            let errorMessage = '';
+            if (isNaN(min) || isNaN(max) || isNaN(count) || isNaN(numberOfSets)) {
+                 errorMessage = '앗! 입력값 중에 숫자가 아닌 것이 있어요! 😟 제대로 된 숫자를 넣어주세요!';
+            } else if (min > max) {
+                 errorMessage = '어머나! 최솟값이 최댓값보다 커요! 다시 확인해주세요! 😥';
+            } else if (count < 0) {
+                 errorMessage = '으앗! 뽑을 개수는 0보다 작을 수 없어요! 😄';
+            } else if (numberOfSets <= 0) { // 반복 횟수는 1 이상이어야 함
+                 errorMessage = '앗! 반복 횟수는 1 이상이어야 해요! 😊';
+            } else if ((max - min + 1) < count) { // 범위 내 전체 숫자보다 뽑을 개수가 많을 때 (미리 체크)
+                 errorMessage = `이런! 범위(${min}~${max}) 안에 전체 친구는 ${max - min + 1}명인데, ${count}명이나 뽑으려고 해요! 개수를 줄여주세요! 😅`;
+            }
+
+
+            if (errorMessage) {
+                // 에러 메시지가 있으면 결과 영역에 표시하고 끝!
+                resultArea.innerHTML = `<p class="error">${errorMessage}</p>`;
+                return; // 함수 종료
+            }
+
+            // **지정된 횟수만큼 반복하여 결과 출력**
+            // 모든 유효성 검사를 통과하면 이제 신나게 뽑아봅시다!
+            for (let i = 0; i < numberOfSets; i++) {
+                const result = selectAndSortIntegers(min, max, count); // 숫자 뽑기 & 줄 세우기
+
+                const p = document.createElement('p'); // 이번 회차 결과를 담을 새로운 <p> 요소 생성
+
+                // selectAndSortIntegers 함수는 유효하면 숫자가 담긴 배열을,
+                // 유효하지 않으면 (count > range) 빈 배열을 반환합니다.
+                if (result.length > 0) {
+                    p.textContent = `${i + 1}번째 친구들: ${result.join(', ')}`; // 몇 번째 시도인지 표시
+                    p.style.color = '#333'; // 기본 글자 색상
+                } else {
+                    // selectAndSortIntegers가 빈 배열을 반환한 경우 (이 경우는 count > range 뿐)
+                     p.textContent = `${i + 1}번째 시도: 앗! 지정된 범위에서 ${count}명의 친구를 뽑을 수 없었어요! 😥`;
+                     p.style.color = '#ff0000'; // 에러 시 빨간색 글자
+                }
+
+                resultArea.appendChild(p); // 결과 영역 div에 이번 회차 결과 <p> 요소 추가
+            }
+        }
+    </script>
+
+</body>
+</html>

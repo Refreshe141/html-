@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>마우스 이벤트 객체의 프로퍼티</title>
+  <script>
+	window.onload=function(){
+		let pic = document.getElementById("pic");
+		drawImage(pic);
+	}
+	function drawImage(obj)
+	{
+		var box = document.getElementById("box");
+		var src=obj.options[obj.selectedIndex].value;
+		box.src =  src;
+	}
+
+	function popWin(obj)
+	{
+		pwin = window.open(obj.src,'pic',"left=330,top=110,width=535,height=400");  
+	}
+  </script>
+  <style type="text/css">
+		#box{width:300px; height: 200px;border:solid 1px red;
+			 background-image:url('media/pic2.png');
+			 background-size:100% 100%;}
+		#pic{font-size:20px; width: 100px; padding: 3px; }
+  </style>
+  <style>
+	#info{width:477px;height:50px;border:solid 1px black;
+		background:url("images/bg/bg1.gif");
+		text-align:center;
+		color:blue;
+		font-weight:bold;margin:10px 5px;
+		font-size:20px;line-height:50px;}
+	.name{color:black;}
+    .no{color:red;}
+    .by{color:orange}
+	
+  </style>
+</head>
+<body>
+<h3> &nbsp;&nbsp;&nbsp;콤보박스/이미지/팝업윈도우</h3>
+<form>
+<select id="pic" onchange="drawImage(this)">
+	<option value="media/pic21.jpg">자연1
+	<option value="media/pic22.jpg" >자연2
+	<option value="media/pic23.jpg">자연3
+	<option value="media/pic24.jpg"  selected>자연4
+</select>
+</form>
+<br>
+<img src="media/pic22.jpg" id="box" onclick="popWin(this)">
+	
+</div>
+</body>
+</html>

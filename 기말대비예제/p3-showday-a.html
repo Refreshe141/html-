@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <script>
+   var kday=["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+   var eday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+   function showDay()
+   {
+		let dt = parseInt(document.querySelector("#dt").value);
+		let content = document.querySelector("#content");
+		let ke = document.getElementsByName("ke");
+		if( dt < 1 || dt > 31) {
+			content.innerHTML="";
+			alert("잘못된 날짜 입니다^^");
+			return;}
+		let str = "2025,6," + dt; 
+		let d = new Date(str);
+		let day = d.getDay();
+
+		if (ke[0].checked == true) content.innerHTML=eday[day];
+		else content.innerHTML=kday[day];
+	
+   }
+
+   function enterKey(e)
+   {
+	   var but = document.getElementById("but");
+	   if(e.keyCode==13)  but.click();
+   }
+
+  </script>
+    <style>
+		#box > div{background-size:100% 100%;}
+		#content{font-size:22px;display:inline-block;width:150px;text-align:center;color:red;}
+		#dt{width:50px;font-size:20px;text-align:center;}
+		.con{width:150px;height:100px;line-height:50px;text-align:center;
+			 border: solid 2px blue;margin:5px; font-size:22px;font-weight:bold;}
+	  </style>
+
+ </head>
+ <body>
+   <h3> &nbsp;2025년 6월의 요일 확인하기-클릭 또는 엔터키</h3>
+   <div id="box" onkeypress="enterKey(event)">
+      <input type="text" value="1" id="dt" /> 
+	  <input type="radio"  name="ke" value="en"> 영어
+	  <input type="radio"  name="ke" value="ko" checked> 한글
+	  <input type="button" value="요일보기" onclick="showDay()" id="but" />
+	  <div id="content">금요일</div>		
+   </div>
+ </body>
+</html>

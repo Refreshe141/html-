@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <script>
+    function selectedControl(){
+        const el = document.getElementById('fruit');  //select box
+        const len = el.options.length; //select box의 option 갯수
+        const str = document.getElementById('searchValue').value; //입력 받은 value 값
+        //select box의 option 갯수만큼 for문 돌림
+        for (let i=0; i<len; i++){  
+            //select box의 option value가 입력 받은 value의 값과 일치할 경우 selected
+            if(el.options[i].value == str){ //el.options[i].text ->'사과', '딸기', '포도' 로 조회시
+                el.options[i].selected = true;
+            }
+        }  
+        }
+  </script>
+</head>
+<input type='text' id='searchValue'>
+<input type='button' onclick='selectedControl()' value='선택'>
+<select id='fruit'>
+  <option value='apple'>사과</option>
+  <option value='strawberry'>딸기</option>
+  <option value='grape'>포도</option>  
+</select>
+  </script>
+</body>
+</html>

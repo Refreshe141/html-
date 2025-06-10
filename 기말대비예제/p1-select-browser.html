@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+Select a fruit and click the button:
+<select id="mySelect">
+  <option value="https://www.bing.com/">Edge</option>
+  <option value="https://www.google.com/">Chrome</option>
+  <option value="https://www.naver.com/">Naver</option>
+  <option value="https://www.mozilla.org/ko/">Firefox</option>
+  <option value="https://www.opera.com/ko">Opera</option>
+</select>
+
+<button type="button" onclick="myFunction()">Execute Browser</button>
+
+<script>
+function myFunction() {
+    let opt="width=500,height=700";
+    
+    var y = document.getElementById("mySelect").options;
+    var x = document.getElementById("mySelect").selectedIndex;
+  
+    let http = y[x].value;
+    let popup = window.open(http,'newWin', opt);
+    //alert("Index: " + y[x].index + " is " + y[x].text + " value :" + y[x].value);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>마우스 이벤트 객체의 프로퍼티</title>
+
+<script>
+function change(obj) {
+	var ig1 = document.getElementById("ig1");
+    ig1.style.backgroundImage="url(" + obj.value + ")";
+}
+
+function random() {
+	var ig2 = document.getElementById("ig2");
+	var num = Math.floor(Math.random() * 3);
+	ig2.style.fontSize="75px";
+	ig2.innerHTML=num;
+    switch(num)
+	{
+		case 0 : ig2.style.backgroundImage="url(media/spade-7.png)";break;
+		case 1 : ig2.style.backgroundImage="url(media/spade-A.png)";break;
+		case 2 : ig2.style.backgroundImage="url(media/spade-2.png)";break;
+	}
+}
+</script>
+<style type="text/css">
+	#box{width:450px;height:300px;}
+	.img1{width:220px;height:150px;
+	      background-image:url(media/apple.png);background-size:100% 100%;}
+	.img2{width:220px;height:150px;font-size:35px;color:red;font-weight:bold;
+	      background-size:100% 100%;}
+	td{border:solid 1px black;text-align:center;}
+</style>
+</head>
+<body>
+<h3> &nbsp;&nbsp;&nbsp;과일 이미지 및 3종의 임의의 카드 보기</h3>
+	<table>
+	<tr>
+		<td>
+			<input type="radio" name="fr" value="media/apple.png" onclick="change(this)" checked />사과
+			<input type="radio" name="fr" value="media/banana.png" onclick="change(this)" />바나나
+			<input type="radio" name="fr" value="media/mango.png" onclick="change(this)" />망고
+		</td>
+		<td>
+			<input type="button" value="임의의 카드보기" onclick="random()" />
+		</td>
+	</tr>
+	<tr>
+		<td class="img1" id="ig1"> </td>
+		<td class="img2" id="ig2"> Nothing </td>
+	</tr>
+	</table>
+</body>
+</html>
