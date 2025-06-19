@@ -1,0 +1,40 @@
+
+	#expr{font-size:30px;width:400px;height:50px;text-align:center;
+	      border:solid 3px;margin-top:0px; line-height:50px; }
+    #but{width:400px;text-align:center; height:265px; border:solid 3px black;
+	     margin-top:5px;}
+	#dg{font-size:25px;width:390px;text-align:center;
+	     height:120px; border:solid 0px black;margin:5px;}
+	#op{font-size:25px;width:390px;text-align:center;
+	     height:60px; border:solid 0px blue;margin:5px;}
+	#sf{font-size:25px;width:390px;text-align:center;
+	     height:60px; border:solid 0px green;margin:5px;}
+
+	#result{font-size:25px;width:400px;text-align:center;
+	      border:solid 3px red;margin-top:5px;line-height:50px; 
+		  height:50px;color:red;}
+
+	#dg > div{width:50px;height:40px;border:solid 2px black;
+	           text-align:center;line-height:40px;float:left;
+			   margin:9px 12px;background:url('../../images/bg/bg5.gif');}
+	#op > div{width:50px;height:40px;border:solid 2px black;
+	           text-align:center;line-height:40px; margin:8px 12px;float:left;
+			   background:url('../../images/bg/bg8.jpg');font-weight:bold}
+	#sf > div{ border:solid 2px;  text-align:center; margin:10px 13px;float:left;
+	          background:url('../../images/bg/bg12.jpg');}
+	#dg > div:hover{color:red;border:dashed 2px red;}
+	#op > div:hover{color:yellow;border:dashed 2px red;}
+	#sf > div:hover{color:red;border:dashed 2px blue;}
+	#dg,#op,#sf{overflow:hidden;}
+	.co1{width:90px;height:40px;line-height:40px;}
+	.co2{width:120px;height:40px;line-height:40px;}
+
+	#info{width:410px;height:50px;border:solid 1px black;
+	       background:url("../../images/bg/bg1.gif");
+		   text-align:center;
+		   color:blue;
+		   font-weight:bold;margin:5px 0;
+		   font-size:20px;line-height:50px;}
+	.name{color:black;}
+	.no{color:red;}
+	.by{color:orange}

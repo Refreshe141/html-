@@ -1,0 +1,17 @@
+
+	#info{width:477px;height:50px;border:solid 1px black;
+	       background:url("../../images/bg/bg1.gif");
+		   text-align:center;
+		   color:blue;
+		   font-weight:bold;margin:5px;
+		   font-size:20px;line-height:50px;}
+	.name{color:black;}
+	.no{color:red;}
+	.by{color:orange}
+
+	#box{width:300px; height: 200px;border:solid 1px red;
+	     background-image:url('media/pic2.png');
+		 background-size:100% 100%;}
+	#pic{font-size:20px;}
+
+ 

@@ -1,0 +1,18 @@
+    #tbox{margin:0 70px;}
+    #box{width: 125px; height: 350px;border: solid 1px;
+            margin:20px}
+    #box>div{width: 100px;height: 100px;border: solid 1px;
+                 border-radius: 50px; margin: 10px;
+                 line-height: 100px; text-align: center;
+                 font-size: 30px; font-weight: bold;}
+    #btn{margin:0 50px; font-size: 25px;}
+
+	#info{width:450px;height:50px;border:solid 1px black;
+	       background:url("../../images/bg/bg1.gif");
+		   text-align:center;
+		   color:blue;
+		   font-weight:bold;margin:5px;
+		   font-size:20px;line-height:50px;}
+	.name{color:black;}
+	.no{color:red;}
+	.by{color:orange}

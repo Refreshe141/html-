@@ -1,0 +1,17 @@
+
+    span {font-size:20px; color:blue}
+    .ans{color:blue; font-weight: bold;}
+    #tcount{font-size:25px;}
+    #abox{display: flex; width:500px;border: solid;}
+    #abox>div{width:33%; font-size: 23px;}
+
+	#info{width:477px;height:50px;border:solid 1px black;
+	       background:url("../../images/bg/bg1.gif");
+		   text-align:center;
+		   color:blue;
+		   font-weight:bold;margin:5px;
+		   font-size:20px;line-height:50px;}
+	.name{color:black;}
+	.no{color:red;}
+	.by{color:orange}
+ 

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+      <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+ 
+
+ </head>
+ <body>
+    <div id="info" class="">
+	    <span class="no">문제4-</span>현재 날짜/시간 및 D-day( <span class="by">by</span> 
+	    <span class="name"> Hong Gildong)</span>
+  </div>
+  <div id="tbox" >
+		<div id="date" >	</div>
+		<div id="time" >	</div>
+		<div id="day" > 	
+			<div id="dayvalue"></div>
+			<div>
+				<input type="checkbox" checked id="cbox" onchange="chday(this)"><span id="ke">한글</span>
+			</div>
+		</div>
+  </div>
+
+  <div id="dbox" >
+	  <div id="dest" >
+		 <select id="dd">
+			<option value="2025,8,25"> 2학기 개강 </option>
+ 			<option value="2025,12,25"> X-Mas </option>
+			<option value="2025,6,26" selected> 여름방학 </option>	
+		 </select>
+	  </div>
+	  <div id="dday" class="">
+		 
+	  </div>
+	  <div>dday는 타이머 미사용</div>
+  </div>
+ </body>
+</html>

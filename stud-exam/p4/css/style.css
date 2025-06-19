@@ -1,0 +1,31 @@
+
+	#info{width:477px;height:50px;border:solid 1px black;
+	       background:url("../../images/bg/bg1.gif");
+		   text-align:center;
+		   color:blue;
+		   font-weight:bold;margin:5px;
+		   font-size:20px;line-height:50px;}
+	.name{color:black;}
+	.no{color:red;}
+	.by{color:orange}
+
+	#tbox > div{border:solid 1px black;width:375px;
+	            height:50px;margin:10px 5px;
+				text-align:center;
+				font-weight:bold;
+			    line-height:50px;
+			    font-size:30px;}
+	#tbox, #dbox{overflow:hidden;}
+
+	#dbox > div{border:solid 1px black;
+	            height:50px;margin:10px 5px;
+				float:left; text-align:center;line-height:50px;}
+	#dest{width:150px;}
+	#dayvalue{width:200px;}
+	#dday{width:212px; color:red;font-size:30px;font-weight:bold;}
+
+	select{font-size:22px;margin:12px 3px;border:none;}
+    #day{display: flex;}
+    #cbox{width:15px; height:15px;}
+	.col{color: blue;}
+	.sec{color: red}
